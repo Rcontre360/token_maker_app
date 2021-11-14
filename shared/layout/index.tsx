@@ -1,13 +1,58 @@
 import React from "react";
-import Image from 'next/image'
-import LogoTransparent from '../../public/logoTransparent.png'
+import clsx from "clsx";
+import Image from "next/image";
+import LogoTransparent from "../../public/onlyLogo.png";
+
+type Classes = {
+  navColor: "bg-transparent" | "bg-white";
+  navLetter: "text-black" | "text-white";
+};
 
 interface Props {}
 
 const Layout: React.FunctionComponent<Props> = ({children}) => {
+  const [classes, setClasses] = React.useState<Classes>({
+    navColor: "bg-transparent",
+    navLetter: "text-white",
+  });
+
+  const handleSetClass = (arg: Partial<Classes>) => {
+    setClasses((prev) => ({...prev, ...arg}));
+  };
+
+  React.useEffect(() => {
+    const scrollHandler = () => {
+      if (window.scrollY > 20) {
+        if (classes.navColor === "bg-transparent") {
+          handleSetClass({navColor: "bg-white", navLetter: "text-black"});
+        }
+      } else {
+        if (classes.navColor === "bg-white") {
+          handleSetClass({
+            navColor: "bg-transparent",
+            navLetter: "text-white",
+          });
+        }
+      }
+    };
+
+    window.removeEventListener("scroll", scrollHandler);
+    window.addEventListener("scroll", scrollHandler);
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, [classes]);
+
   return (
     <>
-      <nav className="absolute top-0 z-10 flex items-center justify-between flex-wrap bg-transparent">
+      <nav
+        className={clsx(
+          "fixed top-0 z-10 flex items-center justify-between flex-wrap z-50 w-full",
+          "transition duration-500 ease-in-out",
+          classes.navColor,
+          classes.navLetter
+        )}
+      >
         <div className="flex items-center w-20 h-20 flex-shrink-0 text-white mr-6">
           <Image src={LogoTransparent} />
         </div>
@@ -46,11 +91,9 @@ const Layout: React.FunctionComponent<Props> = ({children}) => {
           </div>
         </div>
       </nav>
-      <div>
-        {children}
-      </div>
+      <div>{children}</div>
     </>
   );
 };
 
-export default Layout
+export default Layout;
