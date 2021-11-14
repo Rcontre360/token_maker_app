@@ -7,7 +7,7 @@ interface Props {}
 const Layout: React.FunctionComponent<Props> = ({children}) => {
   return (
     <>
-      <nav className="flex items-center justify-between flex-wrap bg-transparent">
+      <nav className="absolute top-0 z-10 flex items-center justify-between flex-wrap bg-transparent">
         <div className="flex items-center w-20 h-20 flex-shrink-0 text-white mr-6">
           <Image src={LogoTransparent} />
         </div>
