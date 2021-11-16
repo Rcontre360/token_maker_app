@@ -21,6 +21,7 @@ const Layout: React.FunctionComponent<Props> = ({children}) => {
   };
 
   React.useEffect(() => {
+
     const scrollHandler = () => {
       if (window.scrollY > 200) {
         if (classes.navColor === "bg-transparent") {
@@ -47,7 +48,7 @@ const Layout: React.FunctionComponent<Props> = ({children}) => {
     <>
       <nav
         className={clsx(
-          "fixed top-0 z-10 flex items-center justify-between flex-wrap z-50 w-full",
+          "fixed top-0 z-10 flex items-center justify-between flex-wrap z-50 w-full shadow-xl",
           "transition duration-500 ease-in-out",
           classes.navColor,
           classes.navLetter

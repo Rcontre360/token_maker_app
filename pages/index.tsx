@@ -84,7 +84,7 @@ const Landing: React.FunctionComponent<Props> = (props) => {
           </div>
         </div>
       </main>
-      <div className="flex h-screen w-full z-10 bg-white p-10 flex-col">
+      <div className="flex h-screen w-full z-20 bg-white p-10 flex-col relative">
         <h3 className="text-center text-3xl text-gray-800">How it works</h3>
         <p className="text-center">
           Easy deploy your cryptocurrency following these steps
@@ -134,7 +134,7 @@ const Landing: React.FunctionComponent<Props> = (props) => {
         </div>
       </div>
       <div
-        className="flex justify-start w-full z-10 bg-white p-10 flex-col bg-green-300"
+        className="flex justify-start w-full z-10 bg-white p-10 flex-col bg-green-300 relative"
         style={{height: "140vh"}}
       >
         <div className="text-center">
