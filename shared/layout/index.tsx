@@ -1,18 +1,20 @@
 import React from "react";
+import {useRouter} from 'next/router'
 import clsx from "clsx";
 import Image from "next/image";
 import LogoTransparent from "../../public/onlyLogo.png";
 
 type Classes = {
-  navColor: "bg-transparent" | "bg-white";
+  navColor: "bg-transparent" | "bg-white" | 'bg-one';
   navLetter: "text-black" | "text-white";
 };
 
 interface Props {}
 
 const Layout: React.FunctionComponent<Props> = ({children}) => {
+  const {pathname} = useRouter()
   const [classes, setClasses] = React.useState<Classes>({
-    navColor: "bg-transparent",
+    navColor: pathname === '/create' ? 'bg-one' : "bg-transparent",
     navLetter: "text-white",
   });
 

@@ -2,35 +2,41 @@ import React from "react";
 import clsx from "clsx";
 
 interface Props {
-  on?: boolean;
   label?: string;
   classes?: Partial<Record<"root" | "input" | "label", string>>;
+  onChange(arg: boolean): void;
+  value: boolean;
 }
 
 const Toggle: React.FunctionComponent<Props> = (props) => {
-  const {label, on, classes} = props;
+  const {label, classes, onChange, value} = props;
   return (
-    <div className={clsx(classes?.root || "flex items-center justify-center")}>
+    <div
+      onClick={() => onChange(!value)}
+      className={clsx(classes?.root || "flex items-center justify-center")}
+    >
       {label && <span className="text-sm mr-4"> {label}</span>}
-      <input type="checkbox" name="toggle" className="hidden" />
+      <input type="checkbox" className="hidden" />
       <label
         className="relative w-12 h-6 flex select-none cursor-pointer"
         htmlFor="toggle"
       >
         <span
-          className="
+          className={clsx(
+            `
         absolute
         left-0
         top-0
         h-full
         w-full
-        bg-gray-300
         rounded-full
-        bg-gray-300
-      "
+        `,
+            value ? `bg-purple-700` : `bg-gray-300`
+          )}
         ></span>
         <span
-          className="
+          className={clsx(
+            `
         h-6
         w-6
         border-2
@@ -38,6 +44,7 @@ const Toggle: React.FunctionComponent<Props> = (props) => {
         z-10
         rounded-full
         bg-white
+        transform
         transition-transform
         duration-300
         ease-in-out
@@ -45,7 +52,9 @@ const Toggle: React.FunctionComponent<Props> = (props) => {
         justify-center
         items-center
         border-gray-300
-      "
+        `,
+            value && `translate-x-6`
+          )}
         ></span>
       </label>
     </div>

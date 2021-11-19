@@ -10,6 +10,7 @@ import appImage from "../public/onlyLogo.png";
 
 import Card from "../shared/components/Card";
 import PriceCard from "../shared/components/PriceCard";
+import constants from "../shared/constants";
 
 interface LandingCardProps {
   headContent: JSX.Element;
@@ -63,7 +64,10 @@ const Landing: React.FunctionComponent<Props> = (props) => {
           "bg-gradient-to-r from-one to-three"
         )}
       >
-        <img src={'/ethereumChip.png'} className='absolute right-52 top-24 w-74 h-74 opacity-20' />
+        <img
+          src={"/ethereumChip.png"}
+          className="absolute right-52 top-24 w-74 h-74 opacity-20"
+        />
         <div className="relative w-full h-screen flex justify-between max-w-6xl items-center">
           <div className="max-w-md align-left flex flex-col fixed top-25">
             <h1 className="text-5xl font-bold text-white text-left leading-snug">
@@ -79,7 +83,7 @@ const Landing: React.FunctionComponent<Props> = (props) => {
           </div>
           <div className="absolute bottom-10 w-full flex justify-center">
             <button className="py-2 px-8 bg-gray-100 rounded-full">
-              Keep Reading <ArrowDownIcon className='ml-4' />
+              Keep Reading <ArrowDownIcon className="ml-4" />
             </button>
           </div>
         </div>
@@ -134,18 +138,24 @@ const Landing: React.FunctionComponent<Props> = (props) => {
         </div>
       </div>
       <div
-        className="flex justify-start w-full z-10 bg-white p-10 flex-col bg-green-300 relative"
-        style={{height: "140vh"}}
+        className="flex justify-start w-full z-10 bg-one p-10 flex-col relative"
+        style={{height: "160vh"}}
       >
-        <div className="text-center">
-          <h3 className="text-3xl text-gray-800">Pricing</h3>
+        <div className="text-center text-white">
+          <h3 className="text-3xl">Pricing</h3>
           <p>Choose between 4 token prices</p>
         </div>
-        <div className="pb-10 pl-96 flex justify-around overflow-x-scroll overflow-y-hidden">
-          <PriceCard prices={cryptoPrices} />
-          <PriceCard prices={cryptoPrices} />
-          <PriceCard prices={cryptoPrices} />
-          <PriceCard prices={cryptoPrices} />
+        <div className="flex items-center overflow-x-scroll overflow-y-hidden py-20">
+          {constants.tokens.map((tkn) => (
+            <div className="px-10 m-auto w-96 h-full" >
+              <PriceCard
+                classes={{root: "px-10 min-w-full"}}
+                title={tkn.title}
+                features={tkn.conditions}
+                price={tkn.price}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </>

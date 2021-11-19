@@ -29,14 +29,14 @@ const TextInput: React.FunctionComponent<Props> = (props) => {
       <div className="relative rounded-md shadow-sm">
         <input
           type={type}
-          className="py-1.5 hover:ring-blue-400 hover:border-blue-400 border-2 focus:ring-blue-400 focus:border-blue-400 block w-full pr-3 sm:text-sm border-gray-300 rounded-md"
+          className="px-1.5 py-1.5 hover:ring-purple-500 hover:border-purple-700 border-2 700 block w-full pr-3 sm:text-sm border-gray-300 rounded-md"
           {...rest}
           {...field}
         />
         {error && (
           <span
             className={clsx(
-              error ? "text-red-500" : "text-blue-500",
+              error ? "text-red-500" : "text-purple-700",
               "text-xs"
             )}
           >
