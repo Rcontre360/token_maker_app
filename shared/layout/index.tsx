@@ -1,20 +1,21 @@
 import React from "react";
-import {useRouter} from 'next/router'
+import Link from "next/link";
+import {useRouter} from "next/router";
 import clsx from "clsx";
 import Image from "next/image";
 import LogoTransparent from "../../public/onlyLogo.png";
 
 type Classes = {
-  navColor: "bg-transparent" | "bg-white" | 'bg-one';
+  navColor: "bg-transparent" | "bg-white" | "bg-one";
   navLetter: "text-black" | "text-white";
 };
 
 interface Props {}
 
 const Layout: React.FunctionComponent<Props> = ({children}) => {
-  const {pathname} = useRouter()
+  const {pathname} = useRouter();
   const [classes, setClasses] = React.useState<Classes>({
-    navColor: pathname === '/create' ? 'bg-one' : "bg-transparent",
+    navColor: pathname === "/create" ? "bg-one" : "bg-transparent",
     navLetter: "text-white",
   });
 
@@ -23,7 +24,11 @@ const Layout: React.FunctionComponent<Props> = ({children}) => {
   };
 
   React.useEffect(() => {
+    if (pathname === "/create")
+      setClasses({navColor: "bg-one", navLetter: "text-white"});
+  }, [pathname]);
 
+  React.useEffect(() => {
     const scrollHandler = () => {
       if (window.scrollY > 200) {
         if (classes.navColor === "bg-transparent") {
@@ -57,7 +62,7 @@ const Layout: React.FunctionComponent<Props> = ({children}) => {
         )}
       >
         <div className="flex items-center w-20 h-20 flex-shrink-0 mr-6">
-          <Image src={LogoTransparent} className='text-red-200' />
+          <Image src={LogoTransparent} className="text-red-200" />
         </div>
         <div className="block lg:hidden">
           <button className="flex items-center px-3 py-2 border rounded hover:text-white hover:border-white">
@@ -72,29 +77,42 @@ const Layout: React.FunctionComponent<Props> = ({children}) => {
           </button>
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-          <div className="text-sm lg:flex-grow">
-            <a
-              href="#responsive-header"
-              className="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4"
-            >
-              Docs
-            </a>
-            <a
-              href="#responsive-header"
-              className="block mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4"
-            >
-              Examples
-            </a>
-            <a
-              href="#responsive-header"
-              className="block mt-4 lg:inline-block lg:mt-0 hover:text-white"
-            >
-              Blog
-            </a>
+          <div className="text-sm lg:flex-grow flex">
+            <div className="mr-4">
+              <Link href="/">Home</Link>
+            </div>
+            <div className="mr-4">
+              <Link href="/create">Create</Link>
+            </div>
           </div>
         </div>
       </nav>
-      <div>{children}</div>
+      <div style={{scrollBehavior: "smooth"}}>{children}</div>
+      <footer
+        className={clsx(
+          "flex justify-start items-center w-full z-10 bg-one p-10 flex-col relative",
+          "grid grid-cols-2",
+          "text-white"
+        )}
+        style={{height: "30vh"}}
+      >
+        <div className="flex justify-center">
+          <Link href="/">CryptoMaker App</Link>
+        </div>
+        <div className="flex justify-center">
+          Developer:{" "}
+          <a
+            href="https://github.com/Rcontre360"
+            className="text-yellow-500 ml-4"
+          >
+            rcontre360.io
+          </a>
+        </div>
+        <div className="flex justify-center">
+          <Link href="/create">Create Token!</Link>
+        </div>
+        <div className="flex justify-center">Need custom development?</div>
+      </footer>
     </>
   );
 };

@@ -6,17 +6,18 @@ interface Props {
   classes?: Partial<Record<"root" | "input" | "label", string>>;
   onChange(arg: boolean): void;
   value: boolean;
+  disabled?: boolean;
 }
 
 const Toggle: React.FunctionComponent<Props> = (props) => {
-  const {label, classes, onChange, value} = props;
+  const {label, classes, onChange, value, disabled} = props;
   return (
     <div
-      onClick={() => onChange(!value)}
+      onClick={disabled ? () => 1 : () => onChange(!value)}
       className={clsx(classes?.root || "flex items-center justify-center")}
     >
-      {label && <span className="text-sm mr-4"> {label}</span>}
-      <input type="checkbox" className="hidden" />
+      {label && <span className={clsx("text-sm mr-4",disabled && 'text-gray-400')}> {label}</span>}
+      <input type="checkbox" className="hidden" disabled={disabled} />
       <label
         className="relative w-12 h-6 flex select-none cursor-pointer"
         htmlFor="toggle"
@@ -43,7 +44,6 @@ const Toggle: React.FunctionComponent<Props> = (props) => {
         absolute
         z-10
         rounded-full
-        bg-white
         transform
         transition-transform
         duration-300
@@ -53,7 +53,8 @@ const Toggle: React.FunctionComponent<Props> = (props) => {
         items-center
         border-gray-300
         `,
-            value && `translate-x-6`
+            value && `translate-x-6`,
+            disabled ? 'bg-gray-400' : 'bg-white'
           )}
         ></span>
       </label>

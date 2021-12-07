@@ -1,261 +1,265 @@
 export const freePlan = {
+  id: "0",
   title: "Free Token",
   price: 0,
-  conditions: [
-    {
+  conditions: {
+    ethereumCompatible: {
       title: "Ethereum compatible",
       available: true,
     },
-    {
+    sourceCode: {
       title: "Verified source code",
       available: true,
     },
-    {
+    erc20Compatible: {
       title: "ERC20 Complete",
       available: true,
     },
-    {
+    removeCopyright: {
       title: "Remove copyright",
       available: false,
     },
-    {
+    customizableDecimals: {
       title: "Customizable decimals",
       available: false,
     },
-    {
+    customizableSupply: {
       title: "Customizable supply",
       available: false,
     },
-    {
+    cappital: {
       title: "Custom max supply",
       available: false,
     },
-    {
+    mintable: {
       title: "Mintable",
       available: false,
     },
-    {
+    burnable: {
       title: "Burnable",
       available: false,
     },
-  ],
+  },
 };
 
 export const basePlan = {
+  id: "1",
   title: "Basic Token",
   price: 100,
-  conditions: [
-    {
+  conditions: {
+    ethereumCompatible: {
       title: "Ethereum compatible",
       available: true,
     },
-    {
+    sourceCode: {
       title: "Verified source code",
       available: true,
     },
-    {
+    erc20Compatible: {
       title: "ERC20 Complete",
       available: true,
     },
-    {
+    removeCopyright: {
       title: "Remove copyright",
       available: true,
     },
-    {
+    customizableDecimals: {
       title: "Customizable decimals",
       available: false,
     },
-    {
+    customizableSupply: {
       title: "Customizable supply",
       available: false,
     },
-    {
+    cappital: {
       title: "Custom max supply",
       available: false,
     },
-    {
+    mintable: {
       title: "Mintable",
       available: false,
     },
-    {
+    burnable: {
       title: "Burnable",
       available: false,
     },
-  ],
+  },
 };
 
 export const customPlan = {
+  id: "2",
   title: "Custom Token",
   price: 150,
-  conditions: [
-    {
+  conditions: {
+    ethereumCompatible: {
       title: "Ethereum compatible",
       available: true,
     },
-    {
+    sourceCode: {
       title: "Verified source code",
       available: true,
     },
-    {
+    erc20Compatible: {
       title: "ERC20 Complete",
       available: true,
     },
-    {
+    removeCopyright: {
       title: "Remove copyright",
       available: true,
     },
-    {
+    customizableDecimals: {
       title: "Customizable decimals",
       available: true,
     },
-    {
+    customizableSupply: {
       title: "Customizable supply",
       available: true,
     },
-    {
+    cappital: {
       title: "Custom max supply",
       available: false,
     },
-    {
+    mintable: {
       title: "Mintable",
       available: false,
     },
-    {
+    burnable: {
       title: "Burnable",
       available: false,
     },
-  ],
+  },
 };
 
 export const mintable = {
+  id: "3",
   title: "Mintable Token",
   price: 200,
-  conditions: [
-    {
+  conditions: {
+    ethereumCompatible: {
       title: "Ethereum compatible",
       available: true,
     },
-    {
+    sourceCode: {
       title: "Verified source code",
       available: true,
     },
-    {
+    erc20Compatible: {
       title: "ERC20 Complete",
       available: true,
     },
-    {
+    removeCopyright: {
       title: "Remove copyright",
       available: true,
     },
-    {
+    customizableDecimals: {
       title: "Customizable decimals",
       available: true,
     },
-    {
+    customizableSupply: {
       title: "Customizable supply",
       available: true,
     },
-    {
+    cappital: {
       title: "Custom max supply",
       available: false,
     },
-    {
+    mintable: {
       title: "Mintable",
       available: true,
     },
-    {
+    burnable: {
       title: "Burnable",
       available: false,
     },
-  ],
+  },
 };
 
 export const unlimited = {
+  id: "4",
   title: "Unlimited Token",
   price: 250,
-  conditions: [
-    {
+  conditions: {
+    ethereumCompatible: {
       title: "Ethereum compatible",
       available: true,
     },
-    {
+    sourceCode: {
       title: "Verified source code",
       available: true,
     },
-    {
+    erc20Compatible: {
       title: "ERC20 Complete",
       available: true,
     },
-    {
+    removeCopyright: {
       title: "Remove copyright",
       available: true,
     },
-    {
+    customizableDecimals: {
       title: "Customizable decimals",
       available: true,
     },
-    {
+    customizableSupply: {
       title: "Customizable supply",
       available: true,
     },
-    {
+    cappital: {
       title: "Custom max supply",
       available: true,
     },
-    {
+    mintable: {
       title: "Mintable",
       available: true,
     },
-    {
+    burnable: {
       title: "Burnable",
       available: false,
     },
-  ],
+  },
 };
 
 export const fullToken = {
+  id: "5",
   title: "Full Token",
   price: 300,
-  conditions: [
-    {
+  conditions: {
+    ethereumCompatible: {
       title: "Ethereum compatible",
       available: true,
     },
-    {
+    sourceCode: {
       title: "Verified source code",
       available: true,
     },
-    {
+    erc20Compatible: {
       title: "ERC20 Complete",
       available: true,
     },
-    {
+    removeCopyright: {
       title: "Remove copyright",
       available: true,
     },
-    {
+    customizableDecimals: {
       title: "Customizable decimals",
       available: true,
     },
-    {
+    customizableSupply: {
       title: "Customizable supply",
       available: true,
     },
-    {
+    cappital: {
       title: "Custom max supply",
       available: true,
     },
-    {
+    mintable: {
       title: "Mintable",
       available: true,
     },
-    {
+    burnable: {
       title: "Burnable",
       available: true,
     },
-  ],
+  },
 };
 
-export default {
-  tokens: [freePlan, basePlan, customPlan, mintable, unlimited, fullToken],
-};
+export default [freePlan, basePlan, customPlan, mintable, unlimited, fullToken];

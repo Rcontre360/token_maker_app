@@ -5,13 +5,14 @@ import {CheckIcon, SelectorIcon} from "@heroicons/react/solid";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  options: {node: string; value: string}[];
+  options: {node: string; value: string, img?: {src: string}}[];
   value: string | number;
   classes?: Partial<Record<"root" | "input" | "options", string>>;
   onChange?: (arg: unknown) => void;
   name?: string;
   error?: boolean;
   helperText?: string;
+  disabled?: boolean;
 }
 
 const SelectInput: React.FunctionComponent<Props> = (props) => {
@@ -60,28 +61,23 @@ const SelectInput: React.FunctionComponent<Props> = (props) => {
                   key={i}
                   className={({active}) =>
                     `${active ? "text-amber-900 bg-purple-100" : "text-gray-900"}
-                          cursor-default select-none relative py-2 pl-10 pr-4 `
+                          cursor-default select-none relative py-2 px-4`
                   }
                   value={opt.value}
                 >
                   {({selected, active}) => (
-                    <>
+                    <div className='flex items-center'>
+                      {
+                        opt.img &&
+                        <img src={opt.img.src} width='30px' height='30px' />
+                      }
                       <span
                         className={`${selected ? "font-medium" : "font-normal"
-                          } block truncate`}
+                          } block truncate ml-4`}
                       >
                         {opt.node}
                       </span>
-                      {selected ? (
-                        <span
-                          className={`${active ? "text-purple-600" : "text-purple-600"
-                            }
-                                absolute inset-y-0 left-0 flex items-center pl-3`}
-                        >
-                          <CheckIcon className="w-5 h-5" aria-hidden="true" />
-                        </span>
-                      ) : null}
-                    </>
+                    </div>
                   )}
                 </Listbox.Option>
               ))}
