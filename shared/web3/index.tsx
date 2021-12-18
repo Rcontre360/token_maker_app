@@ -42,21 +42,6 @@ export const deploy = async (contractConfig: ContractArguments) => {
     ],
   });
 
-  console.log({
-    arguments: [
-      contractConfig.initialSuppy,
-      contractConfig.decimals,
-      contractConfig.maxSupply,
-      contractConfig.name,
-      contractConfig.symbol,
-      [
-        contractConfig.burnable,
-        contractConfig.mintable,
-        contractConfig.pausable,
-        contractConfig.cappable,
-      ],
-    ],
-  });
   const txHash = await window.ethereum.request({
     method: "eth_sendTransaction",
     params: [
@@ -69,6 +54,10 @@ export const deploy = async (contractConfig: ContractArguments) => {
   return txHash;
 };
 
+export const makePayment = async ({amount, paymentToken}: {amount: number, paymentToken: Currency}) => {
+  console.log({amount, paymentToken})
+}
+
 export const connectMetamask = async () => {
   console.log("connect");
   await window.ethereum.request({method: "eth_requestAccounts"});
@@ -80,8 +69,15 @@ export const isWeb3Enabled = async () => {
   return null;
 };
 
+//export const networkMapper = {
+//polygon: {id: '0x89'},
+//ethereum: {id: '0x1' },
+//binance: {id: '0x38' },
+//}
+
+//test network mapper
 export const networkMapper = {
-  polygon: {id: '0x89', provider: process.env.NEXT_LOCAL_POLYGON},
-  mainnet: {id: '0x1', provider: process.env.NEXT_LOCAL_MAINNET},
-  binance: {id: '0x38', provider: process.env.NEXT_LOCAL_BINANCE},
+  polygon: {id: '0x1F41'},
+  ethereum: {id: '0x4'},
+  binance: {id: '0x61'},
 }

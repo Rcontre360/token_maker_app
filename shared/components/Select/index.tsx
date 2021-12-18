@@ -30,6 +30,7 @@ const SelectInput: React.FunctionComponent<Props> = (props) => {
 
   return (
     <div className={classes?.root || "w-full"}>
+      {label && <span className='text-xs text-gray-500'>{label}</span>}
       <div
         className={clsx(
           "relative rounded-md border-gray-300 border-2 focus:border-blue-400 hover:border-blue-400 p-1"

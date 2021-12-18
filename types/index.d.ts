@@ -1,11 +1,12 @@
 
 
 type Currency = {
+  id?: string;
   symbol: string;
   name: string;
-  address:string;
+  address: string;
   price?: number;
-  img?:unknown
+  img?: unknown
 };
 
 declare global {

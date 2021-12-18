@@ -4,6 +4,8 @@ import {useRouter} from "next/router";
 import clsx from "clsx";
 import Image from "next/image";
 import LogoTransparent from "../../public/onlyLogo.png";
+import Button from "../../shared/components/Button";
+import {connectMetamask} from "../../shared/web3";
 
 type Classes = {
   navColor: "bg-transparent" | "bg-white" | "bg-one";
@@ -24,8 +26,7 @@ const Layout: React.FunctionComponent<Props> = ({children}) => {
   };
 
   React.useEffect(() => {
-    if (pathname === "/create")
-      setClasses({navColor: "bg-one", navLetter: "text-white"});
+    if (pathname === "/create") setClasses({navColor: "bg-one", navLetter: "text-white"});
   }, [pathname]);
 
   React.useEffect(() => {
@@ -86,6 +87,11 @@ const Layout: React.FunctionComponent<Props> = ({children}) => {
             </div>
           </div>
         </div>
+        {pathname === "/create" && (
+          <Button className='m-4' onClick={connectMetamask}>
+            Connect metamask
+          </Button>
+        )}
       </nav>
       <div style={{scrollBehavior: "smooth"}}>{children}</div>
       <footer
@@ -101,10 +107,7 @@ const Layout: React.FunctionComponent<Props> = ({children}) => {
         </div>
         <div className="flex justify-center">
           Developer:{" "}
-          <a
-            href="https://github.com/Rcontre360"
-            className="text-yellow-500 ml-4"
-          >
+          <a href="https://github.com/Rcontre360" className="text-yellow-500 ml-4">
             rcontre360.io
           </a>
         </div>
