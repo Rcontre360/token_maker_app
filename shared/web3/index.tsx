@@ -45,7 +45,7 @@ export const deploy = async (contractConfig: ContractArguments) => {
     ],
   });
 
-  const txHash = await window.ethereum.request({
+  const txHash = await (window.ethereum as any).request({
     method: "eth_sendTransaction",
     params: [
       {
@@ -81,7 +81,7 @@ export const makePayment = async ({
 
 export const connectMetamask = async () => {
   console.log("connect");
-  await window.ethereum.request({method: "eth_requestAccounts"});
+  await (window.ethereum as any).request({method: "eth_requestAccounts"});
 };
 
 export const isWeb3Enabled = async () => {

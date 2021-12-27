@@ -108,7 +108,7 @@ const Create: React.FunctionComponent<Props> = (props) => {
           const changeWalletAddress = async (
             nxtNetwork: "polygon" | "binance" | "ethereum"
           ) => {
-            await window.ethereum.request({
+            await (window.ethereum as any).request({
               method: "wallet_switchEthereumChain",
               params: [{chainId: networkMapper[nxtNetwork].id}],
             });
@@ -127,7 +127,7 @@ const Create: React.FunctionComponent<Props> = (props) => {
                     options={cryptoPrices.map((currency) => ({
                       node: currency.name,
                       value: currency.id,
-                      img: currency.img,
+                      img: currency.img as any,
                     }))}
                   />
                   <SelectInput
