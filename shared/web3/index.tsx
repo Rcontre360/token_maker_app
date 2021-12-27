@@ -1,4 +1,4 @@
-import ERC20Contract from "../../../contract/artifacts/contracts/ERC20/ERC20Custom.sol/ERC20Custom.json";
+import ERC20Contract from "./contracts/ERC20Custom.json";
 import detectEthereumProvider from "@metamask/detect-provider";
 
 import Web3 from "web3";
