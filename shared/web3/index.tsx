@@ -4,12 +4,11 @@ import detectEthereumProvider from "@metamask/detect-provider";
 import Web3 from "web3";
 import {AbiItem} from "web3-utils";
 
-
 export type ContractArguments = {
   symbol: string;
   name: string;
   decimals: string;
-  initialSuppy: string;
+  initialSupply: string;
   maxSupply: string;
   burnable: boolean;
   mintable: boolean;
@@ -28,9 +27,13 @@ export const deploy = async (contractConfig: ContractArguments) => {
   const incrementerTx = incrementer.deploy({
     data: bytecode,
     arguments: [
-      contractConfig.initialSuppy,
+      `${contractConfig.initialSupply}${new Array(Number(contractConfig.decimals))
+        .fill("0")
+        .join("")}`,
       contractConfig.decimals,
-      contractConfig.maxSupply,
+      `${contractConfig.maxSupply}${new Array(Number(contractConfig.decimals))
+        .fill("0")
+        .join("")}`,
       contractConfig.name,
       contractConfig.symbol,
       [
@@ -54,9 +57,27 @@ export const deploy = async (contractConfig: ContractArguments) => {
   return txHash;
 };
 
-export const makePayment = async ({amount, paymentToken}: {amount: number, paymentToken: Currency}) => {
-  console.log({amount, paymentToken})
-}
+export const makePayment = async ({
+  amount,
+  paymentToken,
+}: {
+  amount: number;
+  paymentToken: Currency;
+}) => {
+  const web3 = new Web3(window.ethereum as any);
+  const accounts = await web3.eth.getAccounts();
+  const paymentContract = new web3.eth.Contract(
+    ERC20Contract.abi as AbiItem[],
+    paymentToken.address
+  );
+  const decimals = Number((await paymentContract.methods.decimals().call()).toString());
+
+  const finalAmount = `${(amount / paymentToken.price) * 10 ** decimals}`;
+  if (Number(finalAmount) > 0)
+    await paymentContract.methods
+      .transfer(process.env.NEXT_PUBLIC_DEVELOPER_ADDRESS, finalAmount)
+      .send({from: accounts[0]});
+};
 
 export const connectMetamask = async () => {
   console.log("connect");
@@ -77,7 +98,7 @@ export const isWeb3Enabled = async () => {
 
 //test network mapper
 export const networkMapper = {
-  polygon: {id: '0x1F41'},
-  ethereum: {id: '0x4'},
-  binance: {id: '0x61'},
-}
+  polygon: {id: "0x1F41"},
+  ethereum: {id: "0x4"},
+  binance: {id: "0x61"},
+};

@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import clsx from "clsx";
 import Image from "next/image";
 import LogoTransparent from "../../public/onlyLogo.png";
 import Button from "../../shared/components/Button";
-import {connectMetamask} from "../../shared/web3";
+import { connectMetamask } from "../../shared/web3";
+import { Telegram, GitHub, LinkedIn } from "@mui/icons-material";
 
 type Classes = {
   navColor: "bg-transparent" | "bg-white" | "bg-one";
@@ -14,26 +15,26 @@ type Classes = {
 
 interface Props {}
 
-const Layout: React.FunctionComponent<Props> = ({children}) => {
-  const {pathname} = useRouter();
+const Layout: React.FunctionComponent<Props> = ({ children }) => {
+  const { pathname } = useRouter();
   const [classes, setClasses] = React.useState<Classes>({
     navColor: pathname === "/create" ? "bg-one" : "bg-transparent",
     navLetter: "text-white",
   });
 
   const handleSetClass = (arg: Partial<Classes>) => {
-    setClasses((prev) => ({...prev, ...arg}));
+    setClasses((prev) => ({ ...prev, ...arg }));
   };
 
   React.useEffect(() => {
-    if (pathname === "/create") setClasses({navColor: "bg-one", navLetter: "text-white"});
+    if (pathname === "/create") setClasses({ navColor: "bg-one", navLetter: "text-white" });
   }, [pathname]);
 
   React.useEffect(() => {
     const scrollHandler = () => {
       if (window.scrollY > 200) {
         if (classes.navColor === "bg-transparent") {
-          handleSetClass({navColor: "bg-white", navLetter: "text-black"});
+          handleSetClass({ navColor: "bg-white", navLetter: "text-black" });
         }
       } else {
         if (classes.navColor === "bg-white") {
@@ -88,33 +89,50 @@ const Layout: React.FunctionComponent<Props> = ({children}) => {
           </div>
         </div>
         {pathname === "/create" && (
-          <Button className='m-4' onClick={connectMetamask}>
+          <Button className="m-4" onClick={connectMetamask}>
             Connect metamask
           </Button>
         )}
       </nav>
-      <div style={{scrollBehavior: "smooth"}}>{children}</div>
+      <div style={{ scrollBehavior: "smooth" }}>{children}</div>
       <footer
         className={clsx(
           "flex justify-start items-center w-full z-10 bg-one p-10 flex-col relative",
           "grid grid-cols-2",
           "text-white"
         )}
-        style={{height: "30vh"}}
+        style={{ height: "30vh" }}
       >
         <div className="flex justify-center">
           <Link href="/">CryptoMaker App</Link>
         </div>
         <div className="flex justify-center">
           Developer:{" "}
-          <a href="https://github.com/Rcontre360" className="text-yellow-500 ml-4">
+          <a
+            href="https://www.linkedin.com/in/rafael-contreras-pimentel-8b0b67203"
+            className="text-yellow-500 ml-4"
+            target="_blank"
+          >
             rcontre360.io
           </a>
         </div>
         <div className="flex justify-center">
           <Link href="/create">Create Token!</Link>
         </div>
-        <div className="flex justify-center">Need custom development?</div>
+        <div className="flex justify-center">
+          <a href="https://t.me/Rcontre360" target="_blank">
+            <Telegram />
+          </a>
+          <a href="https://github.com/Rcontre360" target="_blank">
+            <GitHub className="mx-12" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/rafael-contreras-pimentel-8b0b67203"
+            target="_blank"
+          >
+            <LinkedIn />
+          </a>
+        </div>
       </footer>
     </>
   );

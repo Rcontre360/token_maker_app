@@ -24,7 +24,8 @@ const chainTokens = {
     ethereum: Token(
       "ETH",
       "Wrapped Ether",
-      "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      '0xa4450074f02f50fbba5fa3737b9e67e502305b64',
+      //"0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
       ethImg
     ),
     usdt: Token(
