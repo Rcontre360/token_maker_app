@@ -28,9 +28,11 @@ const Layout: React.FunctionComponent<Props> = ({children}) => {
 
   React.useEffect(() => {
     if (pathname === "/create") setClasses({navColor: "bg-one", navLetter: "text-white"});
+    else setClasses({navColor: "bg-transparent", navLetter: "text-white"});
   }, [pathname]);
 
   React.useEffect(() => {
+    console.log({pathname,classes})
     const scrollHandler = () => {
       if (window.scrollY > 200) {
         if (classes.navColor === "bg-transparent") {
@@ -51,7 +53,7 @@ const Layout: React.FunctionComponent<Props> = ({children}) => {
     return () => {
       window.removeEventListener("scroll", scrollHandler);
     };
-  }, [classes]);
+  }, [classes,pathname]);
 
   return (
     <>
