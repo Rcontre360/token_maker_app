@@ -144,7 +144,7 @@ const Landing: React.FunctionComponent<Props> = (props) => {
       >
         <div className="text-center text-white">
           <h3 className="text-3xl">Pricing</h3>
-          <p>Choose between 4 token prices</p>
+          <p>{`Choose between ${prices.length} token prices`}</p>
         </div>
         <div className="flex items-center overflow-x-scroll overflow-y-hidden py-20">
           {prices.map((tkn, i) => (

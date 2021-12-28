@@ -18,6 +18,7 @@ import {
   makePayment,
   isWeb3Enabled,
   networkMapper,
+  connectMetamask,
   ContractArguments,
 } from "../../shared/web3";
 
@@ -59,19 +60,28 @@ const Create: React.FunctionComponent<Props> = (props) => {
     }
   };
 
+  const initializeForm = async () => {
+    try {
+      await (window.ethereum as any).request({
+        method: "wallet_switchEthereumChain",
+        params: [{chainId: networkMapper.ethereum.id}],
+      });
+      const {data} = await axios.get(priceUrl);
+      const paymentTokens = Object.entries(tokens.ethereum);
+      const prices = paymentTokens.map((entry) => {
+        const [match, pay] = entry;
+        if (data[match]) return {...pay, price: data[match].usd, id: match};
+        return {...pay, price: 1};
+      });
+      await connectMetamask()
+      setCryptoPrices(prices);
+    } catch (err) {
+      console.log("Error on initialize", err);
+    }
+  };
+
   React.useEffect(() => {
-    axios
-      .get(priceUrl)
-      .then(({data}) => {
-        const paymentTokens = Object.entries(tokens.ethereum);
-        const prices = paymentTokens.map((entry) => {
-          const [match, pay] = entry;
-          if (data[match]) return {...pay, price: data[match].usd, id: match};
-          return {...pay, price: 1};
-        });
-        setCryptoPrices(prices);
-      })
-      .catch((err) => console.log(err));
+    initializeForm();
   }, []);
 
   return (
@@ -118,7 +128,10 @@ const Create: React.FunctionComponent<Props> = (props) => {
           return (
             <>
               <div className="flex flex-col justify-around w-full md:w-2/3">
-                <div className="flex justify-around flex-col sm:flex-row w-full" style={{alignItems: 'center'}}>
+                <div
+                  className="flex justify-around flex-col sm:flex-row w-full"
+                  style={{alignItems: "center"}}
+                >
                   <SelectInput
                     onChange={(val) => setFieldValue("payment", val)}
                     value={values.payment}
@@ -158,7 +171,7 @@ const Create: React.FunctionComponent<Props> = (props) => {
                     <div className="col-span-2">
                       <h4 className="text-lg text-center">Create ERC20 Token</h4>
                     </div>
-                    <div className='col-span-2 sm:col-span-1'>
+                    <div className="col-span-2 sm:col-span-1">
                       <TextInput label="Token name" name="name" />
                       <TextInput label="Token symbol" name="symbol" />
                       <TextInput

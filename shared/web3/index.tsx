@@ -64,6 +64,7 @@ export const makePayment = async ({
   amount: number;
   paymentToken: Currency;
 }) => {
+  if (Number(paymentToken.price) <= 0 || amount <= 0) return;
   const web3 = new Web3(window.ethereum as any);
   const accounts = await web3.eth.getAccounts();
   const paymentContract = new web3.eth.Contract(
@@ -73,10 +74,9 @@ export const makePayment = async ({
   const decimals = Number((await paymentContract.methods.decimals().call()).toString());
 
   const finalAmount = `${(amount / paymentToken.price) * 10 ** decimals}`;
-  if (Number(finalAmount) > 0)
-    await paymentContract.methods
-      .transfer(process.env.NEXT_PUBLIC_DEVELOPER_ADDRESS, finalAmount)
-      .send({from: accounts[0]});
+  await paymentContract.methods
+    .transfer(process.env.NEXT_PUBLIC_DEVELOPER_ADDRESS, finalAmount)
+    .send({from: accounts[0]});
 };
 
 export const connectMetamask = async () => {
@@ -91,14 +91,14 @@ export const isWeb3Enabled = async () => {
 };
 
 export const networkMapper = {
-polygon: {id: '0x89'},
-ethereum: {id: '0x1' },
-binance: {id: '0x38' },
-}
+  polygon: {id: "0x89"},
+  ethereum: {id: "0x1"},
+  binance: {id: "0x38"},
+};
 
 //test network mapper
 //export const networkMapper = {
-  //polygon: {id: "0x1F41"},
-  //ethereum: {id: "0x4"},
-  //binance: {id: "0x61"},
+//polygon: {id: "0x1F41"},
+//ethereum: {id: "0x4"},
+//binance: {id: "0x61"},
 //};

@@ -79,7 +79,7 @@ const Layout: React.FunctionComponent<Props> = ({children}) => {
           </div>
         </div>
         {pathname === "/create" && (
-          <Button className="m-2" onClick={connectMetamask}>
+          <Button className="m-2" onClick={async ()=>await connectMetamask}>
             Metamask
           </Button>
         )}
