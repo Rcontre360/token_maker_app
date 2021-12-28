@@ -146,8 +146,8 @@ const Landing: React.FunctionComponent<Props> = (props) => {
           <p>Choose between 4 token prices</p>
         </div>
         <div className="flex items-center overflow-x-scroll overflow-y-hidden py-20">
-          {prices.map((tkn) => (
-            <div className="px-10 m-auto w-96 h-full">
+          {prices.map((tkn, i) => (
+            <div className="px-10 m-auto w-96 h-full" key={i}>
               <PriceCard
                 classes={{root: "px-10 min-w-full"}}
                 title={tkn.title}
@@ -169,8 +169,8 @@ const Landing: React.FunctionComponent<Props> = (props) => {
           </p>
         </div>
         <div className="grid grid-cols-3 gap-4 pt-10 pb-20 z-10 relative">
-          {Features.map((feature) => (
-            <div className="flex justify-center">
+          {Features.map((feature, i) => (
+            <div className="flex justify-center" key={i}>
               <LandingCard
                 title={feature.title}
                 content={feature.content}
