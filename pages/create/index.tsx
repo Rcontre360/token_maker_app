@@ -189,7 +189,7 @@ const Create: React.FunctionComponent<Props> = (props) => {
                           label="Burnable"
                           value={values.burnable}
                           onChange={() => setFieldValue("burnable", !values.burnable)}
-                          classes={{root: "flex-start flex my-2"}}
+                          classes={{root: "flex-start flex sm:my-0 my-2"}}
                           disabled={!currentToken.conditions.burnable.available}
                         />
                         <Toggle
@@ -205,7 +205,7 @@ const Create: React.FunctionComponent<Props> = (props) => {
                           label="Pausable"
                           value={values.pausable}
                           onChange={() => setFieldValue("pausable", !values.pausable)}
-                          classes={{root: "flex-start flex my-2"}}
+                          classes={{root: "flex-start flex sm:my-0 my-2"}}
                         />
                         <Toggle
                           label="Cappable"
