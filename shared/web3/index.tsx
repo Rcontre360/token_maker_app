@@ -90,15 +90,15 @@ export const isWeb3Enabled = async () => {
   return null;
 };
 
-//export const networkMapper = {
-//polygon: {id: '0x89'},
-//ethereum: {id: '0x1' },
-//binance: {id: '0x38' },
-//}
+export const networkMapper = {
+polygon: {id: '0x89'},
+ethereum: {id: '0x1' },
+binance: {id: '0x38' },
+}
 
 //test network mapper
-export const networkMapper = {
-  polygon: {id: "0x1F41"},
-  ethereum: {id: "0x4"},
-  binance: {id: "0x61"},
-};
+//export const networkMapper = {
+  //polygon: {id: "0x1F41"},
+  //ethereum: {id: "0x4"},
+  //binance: {id: "0x61"},
+//};

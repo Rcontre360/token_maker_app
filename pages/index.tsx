@@ -55,7 +55,7 @@ const Landing: React.FunctionComponent<Props> = (props) => {
     <>
       <main
         className={clsx(
-          "relative flex justify-center w-full flex-1 px-20 text-center",
+          "relative flex w-full flex-1 px-10 md:px-20 text-center",
           "bg-gradient-to-r from-one to-three"
         )}
       >
@@ -65,7 +65,7 @@ const Landing: React.FunctionComponent<Props> = (props) => {
         />
         <div className="relative w-full h-screen flex justify-between max-w-6xl items-center">
           <div className="max-w-md align-left flex flex-col fixed top-25">
-            <h1 className="text-5xl font-bold text-white text-left leading-snug">
+            <h1 className="sm:text-5xl text-4xl font-bold text-white text-left leading-snug">
               Create <span className="text-four">tokens</span> for free, quick
               and easy
             </h1>
@@ -79,7 +79,7 @@ const Landing: React.FunctionComponent<Props> = (props) => {
               Start now
             </button>
           </div>
-          <div className="absolute bottom-10 w-full flex justify-center">
+          <div className="absolute md:block hidden bottom-10 w-full flex justify-center">
             <a href="#content-2">
               <button className="py-2 px-8 bg-gray-100 rounded-full">
                 Keep Reading <ArrowDownIcon className="ml-4" />
@@ -89,14 +89,15 @@ const Landing: React.FunctionComponent<Props> = (props) => {
         </div>
       </main>
       <div
-        className="flex h-screen w-full z-20 bg-white p-10 pt-20 flex-col relative"
+        className="flex align-center flex-col w-full z-20 bg-white p-10 pt-20 pb-20 relative"
         id="content-2"
+        style={{alignItems: 'center'}}
       >
         <h3 className="text-center text-3xl text-gray-800">How it works</h3>
         <p className="text-center">
           Easy deploy your cryptocurrency following these steps
         </p>
-        <div className="flex justify-around">
+        <div className="flex justify-around sm:flex-row flex-col">
           <LandingCard
             className="h-96 bg-gray-100 transform translate-y-14"
             headContent={<Image src={metamaskImage} />}
@@ -113,6 +114,7 @@ const Landing: React.FunctionComponent<Props> = (props) => {
             }
           />
           <LandingCard
+            className="mt-24"
             headContent={<Image src={ethereumImage} />}
             title="Configure your token"
             content={
@@ -139,7 +141,6 @@ const Landing: React.FunctionComponent<Props> = (props) => {
       </div>
       <div
         className="flex justify-start w-full z-10 bg-one p-10 flex-col relative"
-        style={{height: "160vh"}}
       >
         <div className="text-center text-white">
           <h3 className="text-3xl">Pricing</h3>
@@ -160,7 +161,6 @@ const Landing: React.FunctionComponent<Props> = (props) => {
       </div>
       <div
         className="flex justify-start w-full z-10 bg-white p-10 flex-col relative"
-        style={{height: "120vh"}}
       >
         <div className="text-center">
           <h3 className="text-3xl">Features</h3>
@@ -168,9 +168,9 @@ const Landing: React.FunctionComponent<Props> = (props) => {
             You will be able to choose from several features for your token.
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-4 pt-10 pb-20 z-10 relative">
+        <div className="flex flex-wrap justify-center pt-10 pb-20 z-10 relative">
           {Features.map((feature, i) => (
-            <div className="flex justify-center" key={i}>
+            <div className="flex justify-center m-4" key={i}>
               <LandingCard
                 title={feature.title}
                 content={feature.content}
@@ -182,7 +182,6 @@ const Landing: React.FunctionComponent<Props> = (props) => {
       </div>
       <div
         className="flex justify-start items-center w-full z-10 bg-three p-10 flex-col relative"
-        style={{height: "40vh"}}
       >
         <div className="text-center text-white">
           <h3 className="text-3xl">Ready to deploy your Token?</h3>

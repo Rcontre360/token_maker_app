@@ -2,3 +2,7 @@
 html{
   scroll-behavior:smooth;
 }
+
+p {
+    word-break: break-word;
+}

@@ -75,7 +75,7 @@ const Create: React.FunctionComponent<Props> = (props) => {
   }, []);
 
   return (
-    <div className="flex justify-between items-center p-24">
+    <div className="flex md:justify-between justify-center items-center pt-24 p-10 md:p-24">
       <Formik
         validationSchema={Yup.lazy((values) =>
           Yup.object({
@@ -117,8 +117,8 @@ const Create: React.FunctionComponent<Props> = (props) => {
 
           return (
             <>
-              <div className="flex flex-col justify-around w-2/3">
-                <div className="flex justify-around w-full">
+              <div className="flex flex-col justify-around w-full md:w-2/3">
+                <div className="flex justify-around flex-col sm:flex-row w-full" style={{alignItems: 'center'}}>
                   <SelectInput
                     onChange={(val) => setFieldValue("payment", val)}
                     value={values.payment}
@@ -158,7 +158,7 @@ const Create: React.FunctionComponent<Props> = (props) => {
                     <div className="col-span-2">
                       <h4 className="text-lg text-center">Create ERC20 Token</h4>
                     </div>
-                    <div>
+                    <div className='col-span-2 sm:col-span-1'>
                       <TextInput label="Token name" name="name" />
                       <TextInput label="Token symbol" name="symbol" />
                       <TextInput
@@ -180,16 +180,16 @@ const Create: React.FunctionComponent<Props> = (props) => {
                         disabled={!currentToken.conditions.cappital.available}
                       />
                     </div>
-                    <div className="grid-cols-2 h-full">
+                    <div className="col-span-2 sm:col-span-1 h-full">
                       <h4 className="text-center text-md mt-6 col-span-2">
                         Advanced configuration
                       </h4>
-                      <div className="flex justify-around mt-4">
+                      <div className="flex justify-around flex-col sm:flex-row mt-4">
                         <Toggle
                           label="Burnable"
                           value={values.burnable}
                           onChange={() => setFieldValue("burnable", !values.burnable)}
-                          classes={{root: "flex-start flex"}}
+                          classes={{root: "flex-start flex my-2"}}
                           disabled={!currentToken.conditions.burnable.available}
                         />
                         <Toggle
@@ -200,12 +200,12 @@ const Create: React.FunctionComponent<Props> = (props) => {
                           disabled={!currentToken.conditions.mintable.available}
                         />
                       </div>
-                      <div className="flex justify-around mt-4">
+                      <div className="flex justify-around flex-col sm:flex-row mt-4">
                         <Toggle
                           label="Pausable"
                           value={values.pausable}
                           onChange={() => setFieldValue("pausable", !values.pausable)}
-                          classes={{root: "flex-start flex"}}
+                          classes={{root: "flex-start flex my-2"}}
                         />
                         <Toggle
                           label="Cappable"
@@ -227,7 +227,7 @@ const Create: React.FunctionComponent<Props> = (props) => {
           );
         }}
       </Formik>
-      <div className="w-1/4">
+      <div className="w-1/4 hidden md:block">
         <Stepper
           steps={[
             {text: "Set your token features", content: "1"},
